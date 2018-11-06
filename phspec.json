@@ -1,0 +1,22 @@
+{
+  "version": "0.1",
+  "git_repo": "git@git.pidginhost.net:cbsoft/smsapp.git",
+  "hostname": "test.robo-sms.com",
+  "public_key": [""],
+  "apps": [
+    {
+      "name": "django-2.1",
+      "environment": {"python": "3.6"},
+      "plan": "micro"
+    },
+    {
+      "name": "postgresql-11"
+    },
+    {
+      "name": "redis-4"
+    },
+    {
+      "name": "rabbitmq-3.7"
+    }
+  ]
+}
