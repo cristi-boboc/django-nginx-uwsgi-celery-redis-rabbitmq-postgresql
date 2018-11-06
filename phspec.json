@@ -7,7 +7,8 @@
     {
       "name": "django-2.1",
       "environment": {"python": "3.6"},
-      "plan": "micro"
+      "plan": "micro",
+      "project-folder": "myproject"
     },
     {
       "name": "postgresql-11"

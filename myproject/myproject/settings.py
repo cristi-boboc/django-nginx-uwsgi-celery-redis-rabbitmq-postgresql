@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': os.getenv('POSTGRESQL_DB'),
         'USER': os.getenv('POSTGRESQL_USERNAME'),
         'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
-        'HOST': os.getenv('POSTGRESQL_PASSWORD', 'localhost'),
+        'HOST': os.getenv('POSTGRESQL_HOST', 'localhost'),
         'PORT': '5432',
     }
 }
@@ -138,3 +138,5 @@ CACHES = {
         ],
     },
 }
+
+BROKER_URL = 'amqp://{}:{}@{}:5672/'.format(os.getenv('RABBITMQ_USER'), os.getenv('RABBITMQ_PASSWORD'), os.getenv('RABBITMQ_HOST', 'localhost'))
