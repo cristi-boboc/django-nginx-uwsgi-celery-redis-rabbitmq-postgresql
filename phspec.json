@@ -1,8 +1,6 @@
 {
-  "version": "0.1",
-  "git_repo": "git@git.pidginhost.net:cbsoft/smsapp.git",
   "hostname": "test-celery.cbsoft.ro",
-  "public_key": [""],
+  "public_keys": [""],
   "apps": [
     {
       "name": "django-2.1",
