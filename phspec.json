@@ -1,6 +1,5 @@
 {
   "hostname": "test-celery.cbsoft.ro",
-  "public_keys": [""],
   "apps": [
     {
       "name": "django-2.1",
