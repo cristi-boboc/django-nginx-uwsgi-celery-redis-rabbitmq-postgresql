@@ -5,7 +5,7 @@
     {
       "name": "django-2.1",
       "environment": {"python": "3.6"},
-      "plan": "micro",
+      "plan": "xlarge",
       "project-folder": "myproject"
     },
     {
