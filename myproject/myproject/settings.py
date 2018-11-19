@@ -26,7 +26,7 @@ SECRET_KEY = '&o7lxw4_m*wry3r!rq&6&^vp7t)kr7b@_hxj5*h+!#7ypbcar8'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-if os.getenv('STATIC_ROOT'):
+if os.getenv('DJANGO_STATIC'):
     DEBUG = False
     ALLOWED_HOSTS = [os.getenv('HOSTNAME')]
 
