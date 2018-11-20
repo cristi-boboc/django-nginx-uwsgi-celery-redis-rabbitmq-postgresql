@@ -4,9 +4,7 @@
   "apps": [
     {
       "name": "django-2.1",
-      "environment": {"python": "3.6"},
-      "plan": "xlarge",
-      "project-folder": "myproject"
+      "plan": "xlarge"
     },
     {
       "name": "postgresql-11"
