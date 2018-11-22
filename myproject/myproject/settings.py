@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,16 +20,44 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&o7lxw4_m*wry3r!rq&6&^vp7t)kr7b@_hxj5*h+!#7ypbcar8'
+try:
+    from myproject import local_settings
+except ImportError:
+    raise ImproperlyConfigured(
+        "Configuration file is not present. Please define myproject/myproject/local_settings.py"
+    )
+
+SECRET_KEY = getattr(local_settings, 'SECRET_KEY', None)
+STATIC_ROOT = getattr(local_settings, 'DJANGO_STATIC',  os.path.join(BASE_DIR, 'static'))
+MEDIA_ROOT = getattr(local_settings, 'DJANGO_MEDIA',  os.path.join(BASE_DIR, 'media'))
+HOSTNAME = getattr(local_settings, 'HOSTNAME')
+
+REDIS_HOST = getattr(local_settings, 'REDIS_HOST', 'localhost')
+REDIS_PORT = getattr(local_settings, 'REDIS_PORT', 6379)
+REDIS_DATABASE = getattr(local_settings, 'REDIS_DATABASE', 0)
+REDIS_PASSWORD = getattr(local_settings, 'REDIS_PASSWORD')
+
+POSTGRESQL_ENGINE = getattr(local_settings, 'POSTGRESQL_ENGINE', 'postgresql_psycopg2')
+POSTGRESQL_HOST = getattr(local_settings, 'POSTGRESQL_HOST', 'localhost')
+POSTGRESQL_PORT = getattr(local_settings, 'POSTGRESQL_PORT', '5432')
+POSTGRESQL_DB = getattr(local_settings, 'POSTGRESQL_DB')
+POSTGRESQL_USERNAME = getattr(local_settings, 'POSTGRESQL_USERNAME')
+POSTGRESQL_PASSWORD = getattr(local_settings, 'POSTGRESQL_PASSWORD')
+
+RABBITMQ_HOST = getattr(local_settings, 'RABBITMQ_HOST', 'localhost')
+RABBITMQ_PORT = getattr(local_settings, 'RABBITMQ_PORT', '5672')
+RABBITMQ_VHOST = getattr(local_settings, 'RABBITMQ_VHOST')
+RABBITMQ_USERNAME = getattr(local_settings, 'RABBITMQ_USERNAME')
+RABBITMQ_PASSWORD = getattr(local_settings, 'RABBITMQ_PASSWORD')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-if os.getenv('DJANGO_STATIC'):
+if HOSTNAME:
     DEBUG = False
-    ALLOWED_HOSTS = [os.getenv('HOSTNAME')]
+    ALLOWED_HOSTS = [HOSTNAME]
 
 # Application definition
 
@@ -79,12 +108,12 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('POSTGRESQL_DB'),
-        'USER': os.getenv('POSTGRESQL_USERNAME'),
-        'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
-        'HOST': os.getenv('POSTGRESQL_HOST', 'localhost'),
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.{}'.format(POSTGRESQL_ENGINE),
+        'NAME': POSTGRESQL_DB,
+        'USER': POSTGRESQL_USERNAME,
+        'PASSWORD': POSTGRESQL_PASSWORD,
+        'HOST': POSTGRESQL_HOST,
+        'PORT': POSTGRESQL_PORT,
     }
 }
 
@@ -126,18 +155,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.getenv('DJANGO_STATIC', os.path.join(os.path.dirname(BASE_DIR), 'static'))
+
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.getenv('DJANGO_MEDIA', os.path.join(os.path.dirname(BASE_DIR), 'media'))
+
 
 CACHES = {
     'default': {
         'BACKEND': 'redis_cache.RedisCache',
         'LOCATION': [
-            '{}:6379'.format(os.getenv('REDIS_HOST', 'localhost'))
+            '{}:{}'.format(REDIS_HOST, REDIS_PORT)
         ],
+        'OPTIONS': {
+            "DB": REDIS_DATABASE,
+        }
     },
 }
 
-BROKER_URL = 'amqp://{}:{}@{}:5672/'.format(os.getenv('RABBITMQ_USER'), os.getenv('RABBITMQ_PASSWORD'), os.getenv('RABBITMQ_HOST', 'localhost'))
+BROKER_URL = 'amqp://{}:{}@{}:{}/'.format(RABBITMQ_USERNAME, RABBITMQ_PASSWORD, RABBITMQ_HOST, RABBITMQ_PORT)
