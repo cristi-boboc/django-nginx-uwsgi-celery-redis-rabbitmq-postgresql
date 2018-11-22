@@ -9,3 +9,4 @@ A one-click install for a django project using piginhost.com resources
     - Create a phspec.json file in the root of your project specifying the resources required for your project
 3. If all the previous steps are met, then your project will be checked and deployed.
 
+1
