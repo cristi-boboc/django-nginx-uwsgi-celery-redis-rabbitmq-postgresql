@@ -46,7 +46,7 @@ POSTGRESQL_PASSWORD = getattr(local_settings, 'POSTGRESQL_PASSWORD')
 
 RABBITMQ_HOST = getattr(local_settings, 'RABBITMQ_HOST', 'localhost')
 RABBITMQ_PORT = getattr(local_settings, 'RABBITMQ_PORT', '5672')
-RABBITMQ_VHOST = getattr(local_settings, 'RABBITMQ_VHOST')
+RABBITMQ_VHOST = getattr(local_settings, 'RABBITMQ_VHOST', 'celery')
 RABBITMQ_USERNAME = getattr(local_settings, 'RABBITMQ_USERNAME')
 RABBITMQ_PASSWORD = getattr(local_settings, 'RABBITMQ_PASSWORD')
 
@@ -172,4 +172,4 @@ CACHES = {
     },
 }
 
-BROKER_URL = 'amqp://{}:{}@{}:{}/'.format(RABBITMQ_USERNAME, RABBITMQ_PASSWORD, RABBITMQ_HOST, RABBITMQ_PORT)
+BROKER_URL = 'amqp://{}:{}@{}:{}/{}'.format(RABBITMQ_USERNAME, RABBITMQ_PASSWORD, RABBITMQ_HOST, RABBITMQ_PORT, RABBITMQ_VHOST)
