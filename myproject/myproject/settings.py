@@ -27,7 +27,7 @@ except ImportError:
         "Configuration file is not present. Please define myproject/myproject/local_settings.py"
     )
 
-SECRET_KEY = getattr(local_settings, 'SECRET_KEY', None)
+SECRET_KEY = getattr(local_settings, 'DJANGO_SECRET_KEY', None)
 STATIC_ROOT = getattr(local_settings, 'DJANGO_STATIC',  os.path.join(BASE_DIR, 'static'))
 MEDIA_ROOT = getattr(local_settings, 'DJANGO_MEDIA',  os.path.join(BASE_DIR, 'media'))
 HOSTNAME = getattr(local_settings, 'HOSTNAME')
