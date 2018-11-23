@@ -35,7 +35,7 @@ HOSTNAME = getattr(local_settings, 'HOSTNAME')
 REDIS_HOST = getattr(local_settings, 'REDIS_HOST', 'localhost')
 REDIS_PORT = getattr(local_settings, 'REDIS_PORT', 6379)
 REDIS_DATABASE = getattr(local_settings, 'REDIS_DATABASE', 0)
-REDIS_PASSWORD = getattr(local_settings, 'REDIS_PASSWORD')
+REDIS_PASSWORD = getattr(local_settings, 'REDIS_PASSWORD', None)
 
 POSTGRESQL_ENGINE = getattr(local_settings, 'POSTGRESQL_ENGINE', 'postgresql_psycopg2')
 POSTGRESQL_HOST = getattr(local_settings, 'POSTGRESQL_HOST', 'localhost')
