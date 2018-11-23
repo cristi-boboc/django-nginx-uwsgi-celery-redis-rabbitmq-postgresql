@@ -3,7 +3,7 @@
   "apps": [
     {
       "name": "django",
-      "plan": "micro"
+      "hostname": "ultwncq-57.apps.pidginhost.net"
     },
     {
       "name": "postgresql-11"
