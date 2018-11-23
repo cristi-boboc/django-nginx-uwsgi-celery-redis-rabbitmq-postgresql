@@ -2,8 +2,8 @@
   "public_keys":["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDZX/r6R7wL3l/49DR1cKrkNR34kbVHtOuXOb4yKNxxlzEdA02acupEgVQKl/GRPH+EJub+o3G0cZI9+K2v5/nSdAnQYhYJ3lkbRzXOqDqlwJdbu6hoh37cA20S3plnZRMZ4O7OkhzIJ+aNVXwW3TFkSvwPjpXQVgXLLIU9RhyrqPLJuzlWDAhlTOgJcRMSODOptdtLe4VRGLqCAa+yu10QXhfauHe95aqgVxekJ5WB0J1+D/vWSuAzIV6Qg8fZxzCShL1miIa5p5yNPaJ2aTJUQSxf5wzdpxeBC+50SH2p+S+LEd1R10rYorH6MeQdgeOPBa7hu0LqBUVpdkoqEqZM0iSaW7E3d9sj7ejInQxUjPoYGnSlRrejyj7xymJokM5iyYjgZtOT6va1yuG61NSnPLGOpQ5sMMp3ocqlwuN4qSL7/iZ3ecWv4ASRE/lZp5skvVgbulJO2UHEoIX4RmVKr5iGJQbSky9Qgsa+Ar1cIByuXixFaHIdtXcgfNRiL9C3W1dRDs9q1KZ+mCv83mDqWm8+l8s2aFWtFyxJ6sk2PGi6HoZr1MG0999KnH3NvTZRzcEFGaheN+6li6RUMtcX82tG6/ZWxdwOUo0hsj54VwoadkUY3s7z1QUGlkHWiLf2/SrjGj0ZOLtGx+Js5ByVtPjg6/xPHPlER42nYnVy1w== johnyb@Bobocs-iMac-2.local"],
   "apps": [
     {
-      "name": "django-2.1",
-      "hostname": "mjkcdvo-56.apps.pidginhost.net"
+      "name": "django",
+      "plan": "micro"
     },
     {
       "name": "postgresql-11"
